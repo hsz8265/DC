@@ -1,21 +1,41 @@
 package com.bp.darkcuisine.item;
 import com.bp.darkcuisine.DarkCuisine;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.component.type.ConsumableComponent;
+import net.minecraft.component.type.ConsumableComponents;
+import net.minecraft.component.type.FoodComponent;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ModItems {
-    public static final Item tst = register("tst",Item::new,new Item.Settings());
+    public static final Item tst = register("tst",Item::new,new Item.Settings().food(new FoodComponent.Builder().nutrition(13).saturationModifier(4.2f).build(),
+            ConsumableComponents.food().consumeEffect(
+                    new ApplyEffectsConsumeEffect(
+                            List.of(
+                                    new StatusEffectInstance(StatusEffects.STRENGTH,1600,1),
+                                    new StatusEffectInstance(StatusEffects.POISON,800,0),
+                                    new StatusEffectInstance(StatusEffects.NAUSEA,800,0)
+
+    )
+                            )
+                    ).build()
+            ));
+
     /*
     private static Item regItems(String id,Item item){
         //return Registry.register(Registries.ITEM, RegistryKey.of(Registries.ITEM.getKey(), Identifier.of(DarkCuisine.MOD_ID,id)),item);
