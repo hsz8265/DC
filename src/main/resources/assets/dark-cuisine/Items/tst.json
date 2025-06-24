@@ -1,6 +1,6 @@
 {
   "model": {
-    "type": "minecraft.model",
-    "model": "darkcuisine:item/tst"
+    "type": "model",
+    "model": "dark-cuisine:item/tst"
   }
 }

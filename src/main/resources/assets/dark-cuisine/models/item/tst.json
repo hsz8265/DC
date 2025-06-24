@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
 
   "textures": {
-    "layer0": "darkcuisine:item/tst"
+    "layer0": "dark-cuisine:item/tst"
   }
 }
