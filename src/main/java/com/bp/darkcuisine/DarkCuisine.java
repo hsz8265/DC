@@ -1,5 +1,6 @@
 package com.bp.darkcuisine;
 
+import com.bp.darkcuisine.ItemGroup.DarkCuisineItemGroup;
 import com.bp.darkcuisine.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -20,6 +21,7 @@ public class DarkCuisine implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		ModItems.regModItems();
+		DarkCuisineItemGroup.initialize();
 		LOGGER.info("Hello Fabric world!");
 	}
 }

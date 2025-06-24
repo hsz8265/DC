@@ -1,13 +1,18 @@
 package com.bp.darkcuisine.item;
 import com.bp.darkcuisine.DarkCuisine;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class ModItems {
     public static final Item tst = register("tst",Item::new,new Item.Settings());
@@ -17,7 +22,6 @@ public class ModItems {
         return Registry.register(Registries.ITEM, Identifier.of(DarkCuisine.MOD_ID,id),item);
     }
     */
-
 
 
 
