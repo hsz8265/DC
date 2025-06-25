@@ -27,9 +27,9 @@ public class ModItems {
             ConsumableComponents.food().consumeEffect(
                     new ApplyEffectsConsumeEffect(
                             List.of(
-                                    new StatusEffectInstance(StatusEffects.STRENGTH,1600,1),
-                                    new StatusEffectInstance(StatusEffects.POISON,800,0),
-                                    new StatusEffectInstance(StatusEffects.NAUSEA,800,0)
+                                    new StatusEffectInstance(StatusEffects.STRENGTH,3200,1),
+                                    new StatusEffectInstance(StatusEffects.POISON,1600,0),
+                                    new StatusEffectInstance(StatusEffects.NAUSEA,1600,0)
 
     )
                             )
