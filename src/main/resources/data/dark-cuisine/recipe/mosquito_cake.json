@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": "dark-cuisine:mosquito_cake",
+  "result": {
+    "id": "dark-cuisine:cooked_mosquito_cake"
+  }
+}
