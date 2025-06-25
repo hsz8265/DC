@@ -35,6 +35,17 @@ public class ModItems {
                             )
                     ).build()
             ));
+    public static final Item Mosquito_Cake = register("mosquito_cake",Item::new,new Item.Settings().food(new FoodComponent.Builder().nutrition(3).saturationModifier(0.6f).build(),
+            ConsumableComponents.food().consumeEffect(
+                    new ApplyEffectsConsumeEffect(
+                            List.of(
+                                    new StatusEffectInstance(StatusEffects.POISON,3200,1),
+                                    new StatusEffectInstance(StatusEffects.NAUSEA,3200,1)
+
+                            )
+                    )
+            ).build()
+    ));
 
     /*
     private static Item regItems(String id,Item item){
