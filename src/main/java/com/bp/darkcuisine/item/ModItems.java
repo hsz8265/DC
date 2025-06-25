@@ -23,7 +23,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ModItems {
-    public static final Item tst = register("tst",Item::new,new Item.Settings().food(new FoodComponent.Builder().nutrition(13).saturationModifier(4.2f).build(),
+    public static final Item Cooked_Mosquito_Cake = register("cooked_mosquito_cake",Item::new,new Item.Settings().food(new FoodComponent.Builder().nutrition(13).saturationModifier(4.2f).build(),
             ConsumableComponents.food().consumeEffect(
                     new ApplyEffectsConsumeEffect(
                             List.of(

@@ -11,10 +11,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class DarkCuisineItemGroup {
-    public static final ItemGroup darkcuisine = FabricItemGroup.builder().icon(()->(new ItemStack(ModItems.tst))).
+    public static final ItemGroup darkcuisine = FabricItemGroup.builder().icon(()->(new ItemStack(ModItems.Cooked_Mosquito_Cake))).
             displayName(Text.translatable(I18n.translate("DarkCuisine"))).
             entries((context,entries)->{
-                entries.add(ModItems.tst);
+                entries.add(ModItems.Cooked_Mosquito_Cake);
             }).build();
     public static void initialize()
     {
