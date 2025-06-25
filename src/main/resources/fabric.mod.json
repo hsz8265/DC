@@ -18,6 +18,9 @@
 		"main": [
 			"com.bp.darkcuisine.DarkCuisine"
 		],
+		"client": [
+			"com.bp.darkcuisine.entity.client.EntityClient"
+		],
 		"fabric-datagen": [
 			"com.bp.darkcuisine.DarkCuisineDataGenerator"
 		]
