@@ -16,6 +16,7 @@ public class DarkCuisineItemGroup {
             entries((context,entries)->{
                 entries.add(ModItems.Cooked_Mosquito_Cake);
                 entries.add(ModItems.Mosquito_Cake);
+                entries.add(ModItems.Mosquito_Corpse);
             }).build();
     public static void initialize()
     {
