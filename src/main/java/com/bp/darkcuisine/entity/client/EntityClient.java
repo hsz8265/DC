@@ -13,6 +13,7 @@ public class EntityClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         EntityRendererRegistry.register(EntityTesting.tststtttttt,(ctx -> {return new Renderer(ctx);}));
+        //EntityRendererRegistry.register(EntityTesting.tststtttttt,Renderer::new);
         EntityModelLayerRegistry.registerModelLayer(Renderer.MODEL_CUBE_LAYER,tstModel::getTexturedModelData);
     }
 }

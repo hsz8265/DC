@@ -29,6 +29,6 @@ public class EntityTesting implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        FabricDefaultAttributeRegistry.register(tststtttttt, tsteEntity.createMobAttributes());
+
     }
 }

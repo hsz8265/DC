@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class tsteEntity extends AnimalEntity {
-    public tsteEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+    public tsteEntity(EntityType<? extends tsteEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -26,8 +26,10 @@ public class tsteEntity extends AnimalEntity {
         return null;
     }
 
-    public static DefaultAttributeContainer.Builder createAttributes(){
+    public static DefaultAttributeContainer createAttributes(){
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.MAX_HEALTH,500);
+                .add(EntityAttributes.MAX_HEALTH,500)
+                .add(EntityAttributes.MOVEMENT_SPEED,0.25f)
+                .build();
     }
 }
