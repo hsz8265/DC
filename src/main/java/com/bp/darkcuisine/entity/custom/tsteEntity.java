@@ -7,6 +7,7 @@ import net.minecraft.entity.ai.control.LookControl;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.AnimalMateGoal;
 import net.minecraft.entity.ai.goal.FlyGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.pathing.BirdNavigation;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -62,8 +63,8 @@ public class tsteEntity extends AnimalEntity {
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0,new ActiveTargetGoal<>(this, PlayerEntity.class,true));
-        this.goalSelector.add(1,new AnimalMateGoal(this,1));
-        this.goalSelector.add(2,new FlyGoal(this,5));
+        this.targetSelector.add(0, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.goalSelector.add(1,new MeleeAttackGoal(this,1.0,false));
+        this.goalSelector.add(2,new FlyGoal(this,1));
     }
 }
