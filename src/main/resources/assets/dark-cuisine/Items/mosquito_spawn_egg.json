@@ -1,0 +1,7 @@
+{
+  "model": {
+    "type": "model",
+    "model": "dark-cuisine:item/mosquito_spawn_egg"
+  },
+  "parent": "item/mosquito_spawn_egg"
+}
