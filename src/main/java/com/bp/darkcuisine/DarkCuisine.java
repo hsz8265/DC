@@ -11,7 +11,7 @@ import net.minecraft.entity.EntityType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.bp.darkcuisine.entity.EntityTesting.tststtttttt;
+import static com.bp.darkcuisine.entity.EntityTesting.mosquito;
 
 public class DarkCuisine implements ModInitializer {
 	public static final String MOD_ID = "dark-cuisine";
@@ -29,6 +29,6 @@ public class DarkCuisine implements ModInitializer {
 		ModItems.regModItems();
 		DarkCuisineItemGroup.initialize();
 		LOGGER.info("Hello Fabric world!");
-		FabricDefaultAttributeRegistry.register(tststtttttt, tsteEntity.createAttributes());
+		FabricDefaultAttributeRegistry.register(mosquito, tsteEntity.createAttributes());
 	}
 }

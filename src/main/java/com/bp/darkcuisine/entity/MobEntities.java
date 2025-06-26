@@ -11,10 +11,10 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 public class MobEntities {
-    public static final RegistryKey<EntityType<?>> registryKey = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(DarkCuisine.MOD_ID, "tste"));
+    public static final RegistryKey<EntityType<?>> registryKey = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(DarkCuisine.MOD_ID, "mosquito"));
     public static final EntityType<tsteEntity> ttt = Registry.register(
             Registries.ENTITY_TYPE,
-            Identifier.of(DarkCuisine.MOD_ID, "tste"),
+            Identifier.of(DarkCuisine.MOD_ID, "mosquito"),
             EntityType.Builder.create(tsteEntity::new, SpawnGroup.CREATURE).dimensions(0.75f, 0.75f).build(registryKey));
     public static void reg(){
         DarkCuisine.LOGGER.info("Reggggg");

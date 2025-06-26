@@ -20,10 +20,10 @@ public class EntityTesting implements ModInitializer {
      * 这个实体注册在了 SpawnGroup#CREATURE 类别下，大多数的动物和友好或中立的生物都注册在这个类别下。
      * 它有一个 0.75 × 0.75（或12个像素宽，即一个方块的3/4）大小的碰撞体积。
      */
-    public static final RegistryKey<EntityType<?>> registryKey = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(DarkCuisine.MOD_ID, "tste"));
-    public static final EntityType<tsteEntity> tststtttttt = Registry.register(
+    public static final RegistryKey<EntityType<?>> registryKey = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(DarkCuisine.MOD_ID, "mosquito"));
+    public static final EntityType<tsteEntity> mosquito = Registry.register(
             Registries.ENTITY_TYPE,
-            Identifier.of(DarkCuisine.MOD_ID, "tste"),
+            Identifier.of(DarkCuisine.MOD_ID, "mosquito"),
             EntityType.Builder.create(tsteEntity::new, SpawnGroup.CREATURE).dimensions(0.75f, 0.75f).build(registryKey)
     );
 

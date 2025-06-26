@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 public class Renderer extends MobEntityRenderer<tsteEntity, tstEntityRenderState,tm> {
 
     private static final Identifier TEXTURE = Identifier.of(DarkCuisine.MOD_ID,"textures/item/ficon.png");
-    public static final EntityModelLayer MODEL_CUBE_LAYER = new EntityModelLayer(Identifier.of(DarkCuisine.MOD_ID, "tste"), "bone");
+    public static final EntityModelLayer MODEL_CUBE_LAYER = new EntityModelLayer(Identifier.of(DarkCuisine.MOD_ID, "mosquito"), "bone");
     public Renderer(EntityRendererFactory.Context context) {
         super(context, new tm(context.getPart(MODEL_CUBE_LAYER)), 0.5f);
     }

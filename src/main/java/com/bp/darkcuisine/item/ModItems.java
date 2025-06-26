@@ -46,7 +46,7 @@ public class ModItems {
             ).build()
     ));
     public static final Item Mosquito_Corpse = register("mosquito_corpse",Item::new,new Item.Settings());
-    public static final Item Mosquito_Spawn_Egg = register("mosquito_spawn_egg",settings->new SpawnEggItem(EntityTesting.tststtttttt,settings),new Item.Settings());
+    public static final Item Mosquito_Spawn_Egg = register("mosquito_spawn_egg",settings->new SpawnEggItem(EntityTesting.mosquito,settings),new Item.Settings());
     //public static final Item Mosquito_Spawn_Egg1 = register("mosquito_spawn_egg", new SpawnEggItem(EntityTesting.tststtttttt,new Item.Settings()),new Item.Settings());
     /*
     private static Item regItems(String id,Item item){
