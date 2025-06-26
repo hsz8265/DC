@@ -2,6 +2,7 @@ package com.bp.darkcuisine.entity.client;
 
 import com.bp.darkcuisine.entity.client.tstEntityRenderState;
 import com.bp.darkcuisine.entity.custom.tsteEntity;
+import net.fabricmc.fabric.impl.loot.FabricLootTable;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;

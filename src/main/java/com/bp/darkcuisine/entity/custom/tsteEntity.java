@@ -41,7 +41,7 @@ public class tsteEntity extends AnimalEntity {
 
     public static DefaultAttributeContainer createAttributes(){
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.MAX_HEALTH,500)
+                .add(EntityAttributes.MAX_HEALTH,5.0)
                 .add(EntityAttributes.MOVEMENT_SPEED,1f)
                 .add(EntityAttributes.FLYING_SPEED,0.5f)
                 .build();
