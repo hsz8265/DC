@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
@@ -17,6 +18,7 @@ public class DarkCuisineItemGroup {
                 entries.add(ModItems.Cooked_Mosquito_Cake);
                 entries.add(ModItems.Mosquito_Cake);
                 entries.add(ModItems.Mosquito_Corpse);
+                entries.add(ModItems.Mosquito_Spawn_Egg);
             }).build();
     public static void initialize()
     {
