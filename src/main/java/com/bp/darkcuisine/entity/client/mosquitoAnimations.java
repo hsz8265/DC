@@ -7,21 +7,23 @@ import net.minecraft.client.render.entity.animation.*;
  * Exported for Minecraft version 1.19 or later with Yarn mappings
  * @author Author
  */
-public class mosquitoAnimation {
-	public static final AnimationDefinition animation = AnimationDefinition.Builder.create(4.0F).looping()
+public class mosquitoAnimations {
+	public static final AnimationDefinition fly = AnimationDefinition.Builder.create(1.0F).looping()
 		.addBoneAnimation("wingl", new Transformation(Transformation.Targets.ROTATE,
 			new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
-			new Keyframe(2.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, -10.0F), Transformation.Interpolations.LINEAR),
-			new Keyframe(4.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR)
+			new Keyframe(0.25F, AnimationHelper.createRotationalVector(0.0F, 0.0F, -20.0F), Transformation.Interpolations.LINEAR),
+			new Keyframe(0.75F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 20.0F), Transformation.Interpolations.LINEAR),
+			new Keyframe(1F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR)
 		))
 		.addBoneAnimation("wingr", new Transformation(Transformation.Targets.ROTATE, 
 			new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
-			new Keyframe(2.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 10.0F), Transformation.Interpolations.LINEAR),
-			new Keyframe(4.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR)
+			new Keyframe(0.25F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 20.0F), Transformation.Interpolations.LINEAR),
+			new Keyframe(0.75F, AnimationHelper.createRotationalVector(0.0F, 0.0F, -20.0F), Transformation.Interpolations.LINEAR),
+				new Keyframe(1F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR)
 		))
 		.build();
 
-	public static final AnimationDefinition animation2 = AnimationDefinition.Builder.create(2.0F)
+	public static final AnimationDefinition attack = AnimationDefinition.Builder.create(1.0F)
 		.addBoneAnimation("bone", new Transformation(Transformation.Targets.MOVE_ORIGIN,
 			new Keyframe(0.0F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
 			new Keyframe(2.0F, AnimationHelper.createTranslationalVector(0.0F, -1.0F, -1.0F), Transformation.Interpolations.LINEAR)

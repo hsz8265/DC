@@ -1,7 +1,9 @@
 package com.bp.darkcuisine.entity.client;
 
+import com.bp.darkcuisine.entity.custom.tsteEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.animation.Animation;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
@@ -14,12 +16,14 @@ public class mosquitoModel extends EntityModel<tstEntityRenderState> {
 	private final ModelPart wingr;
 	private final ModelPart wingl;
 	private final ModelPart bb_main;
+	private final Animation flyAnimation;
 	public mosquitoModel(ModelPart root) {
 		super(root);
 		this.bone = root.getChild("bone");
 		this.wingr = root.getChild("wingr");
 		this.wingl = root.getChild("wingl");
 		this.bb_main = root.getChild("bb_main");
+		this.flyAnimation=mosquitoAnimations.fly.createAnimation(root);
 	}
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
@@ -54,8 +58,12 @@ public class mosquitoModel extends EntityModel<tstEntityRenderState> {
 		ModelPartData cube_r9 = bb_main.addChild("cube_r9", ModelPartBuilder.create().uv(0, 0).cuboid(0.3F, 1.0F, 2.0F, 0.2F, 6.0F, 0.2F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.5236F, 0.0F, -0.3491F));
 		return TexturedModelData.of(modelData, 64, 64);
 	}
-	public void setAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setAngles(tstEntityRenderState tstEntityRenderState)
+	{
+		super.setAngles(tstEntityRenderState);
+		this.flyAnimation.apply(tstEntityRenderState.flyAnimationState,tstEntityRenderState.age);
 	}
+
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
 		bone.render(matrices, vertexConsumer, light, overlay);
 		wingr.render(matrices, vertexConsumer, light, overlay);

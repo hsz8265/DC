@@ -10,12 +10,12 @@ import net.minecraft.util.Identifier;
 /*
  * A renderer is used to provide an entity model, shadow size, and texture.
  */
-public class Renderer extends MobEntityRenderer<tsteEntity, tstEntityRenderState,tm> {
+public class MosquitoRenderer extends MobEntityRenderer<tsteEntity, tstEntityRenderState,mosquitoModel> {
 
     private static final Identifier TEXTURE = Identifier.of(DarkCuisine.MOD_ID,"textures/item/ficon.png");
     public static final EntityModelLayer MODEL_CUBE_LAYER = new EntityModelLayer(Identifier.of(DarkCuisine.MOD_ID, "mosquito"), "bone");
-    public Renderer(EntityRendererFactory.Context context) {
-        super(context, new tm(context.getPart(MODEL_CUBE_LAYER)), 0.5f);
+    public MosquitoRenderer(EntityRendererFactory.Context context) {
+        super(context, new mosquitoModel(context.getPart(MODEL_CUBE_LAYER)), 0.5f);
     }
 
     @Override
@@ -24,6 +24,11 @@ public class Renderer extends MobEntityRenderer<tsteEntity, tstEntityRenderState
     }
 
 
+    @Override
+    public void updateRenderState(tsteEntity livingEntity, tstEntityRenderState livingEntityRenderState, float f) {
+        super.updateRenderState(livingEntity, livingEntityRenderState, f);
+        livingEntityRenderState.flyAnimationState.copyFrom(tsteEntity.flyAnimationState);
+    }
 
     @Override
     public Identifier getTexture(tstEntityRenderState state) {

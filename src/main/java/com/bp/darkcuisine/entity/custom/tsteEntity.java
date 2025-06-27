@@ -1,6 +1,9 @@
 package com.bp.darkcuisine.entity.custom;
 
 import com.bp.darkcuisine.DarkCuisine;
+import net.minecraft.client.render.entity.animation.Animation;
+import net.minecraft.entity.AnimationState;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.ai.control.LookControl;
@@ -24,18 +27,22 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class tsteEntity extends AnimalEntity {
+    public static final AnimationState flyAnimationState = new AnimationState();
     public tsteEntity(EntityType<? extends tsteEntity> entityType, World world) {
         super(entityType, world);
         this.moveControl = new FlightMoveControl(this,20,true);
         this.lookControl = new LookControl(this);
 
     }
-
     @Override
     public boolean handleFallDamage(double fallDistance, float damagePerDistance, DamageSource damageSource) {
         return false;
     }
-
+    @Override
+    protected void updateLimbs(float posDelta) {
+        float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0f, 1.0f) : 0.0f;
+        this.limbAnimator.updateLimbs(f, 0.2f,1);
+    }
     @Override
     public boolean isBreedingItem(ItemStack stack) {
         return false;
@@ -58,7 +65,13 @@ public class tsteEntity extends AnimalEntity {
     public void tick(){
         super.tick();
         if(!this.isOnGround()){
+
             this.setMovementSpeed(0.3f);
+            flyAnimationState.startIfNotRunning(this.age);
+        }
+        else
+        {
+            flyAnimationState.stop();
         }
 
     }

@@ -12,8 +12,8 @@ import com.bp.darkcuisine.entity.custom.tsteEntity;
 public class EntityClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        EntityRendererRegistry.register(EntityTesting.mosquito,(ctx -> {return new Renderer(ctx);}));
+        EntityRendererRegistry.register(EntityTesting.mosquito,(ctx -> {return new MosquitoRenderer(ctx);}));
         //EntityRendererRegistry.register(EntityTesting.tststtttttt,Renderer::new);
-        EntityModelLayerRegistry.registerModelLayer(Renderer.MODEL_CUBE_LAYER,tm::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(MosquitoRenderer.MODEL_CUBE_LAYER,mosquitoModel::getTexturedModelData);
     }
 }
