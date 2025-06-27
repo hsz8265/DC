@@ -1,25 +1,18 @@
 package com.bp.darkcuisine.item;
 import com.bp.darkcuisine.DarkCuisine;
-import com.bp.darkcuisine.entity.EntityTesting;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
-import net.minecraft.component.type.ConsumableComponent;
+import com.bp.darkcuisine.entity.MobEntities;
 import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class ModItems {
     public static final Item Cooked_Mosquito_Cake = register("cooked_mosquito_cake",Item::new,new Item.Settings().food(new FoodComponent.Builder().nutrition(13).saturationModifier(4.2f).build(),
@@ -46,7 +39,7 @@ public class ModItems {
             ).build()
     ));
     public static final Item Mosquito_Corpse = register("mosquito_corpse",Item::new,new Item.Settings());
-    public static final Item Mosquito_Spawn_Egg = register("mosquito_spawn_egg",settings->new SpawnEggItem(EntityTesting.mosquito,settings),new Item.Settings());
+    public static final Item Mosquito_Spawn_Egg = register("mosquito_spawn_egg",settings->new SpawnEggItem(MobEntities.mosquito,settings),new Item.Settings());
     //public static final Item Mosquito_Spawn_Egg1 = register("mosquito_spawn_egg", new SpawnEggItem(EntityTesting.tststtttttt,new Item.Settings()),new Item.Settings());
     /*
     private static Item regItems(String id,Item item){
