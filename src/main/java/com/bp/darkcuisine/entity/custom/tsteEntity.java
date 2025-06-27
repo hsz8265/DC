@@ -79,6 +79,5 @@ public class tsteEntity extends AnimalEntity {
     @Override
     protected void dropLoot(ServerWorld world, DamageSource damageSource, boolean causedByPlayer) {
         super.dropLoot(world, damageSource, causedByPlayer);
-        this.dropItem(world, Items.BOW);
     }
 }

@@ -1,8 +1,5 @@
 package com.bp.darkcuisine.entity.client;
 
-import com.bp.darkcuisine.entity.client.tstEntityRenderState;
-import com.bp.darkcuisine.entity.custom.tsteEntity;
-import net.fabricmc.fabric.impl.loot.FabricLootTable;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
@@ -15,17 +12,35 @@ import net.minecraft.entity.Entity;
 public class tstModel extends EntityModel<tstEntityRenderState> {
 	private final ModelPart bb_main;
 	public tstModel(ModelPart root) {
-		super(root);
-		this.bb_main = root.getChild("abc");
+        super(root);
+        this.bb_main = root.getChild("bb_main");
 	}
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-		ModelPartData bb_main = modelPartData.addChild("bb_main", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new Dilation(0.0F))
-		.uv(0, 0).cuboid(-1.0F, -2.0F, 1.0F, 2.0F, 2.0F, 2.0F, new Dilation(0.0F))
-		.uv(0, 0).cuboid(-1.0F, -2.0F, -3.0F, 2.0F, 2.0F, 2.0F, new Dilation(0.0F))
-		.uv(0, 0).cuboid(-1.0F, -4.0F, -1.0F, 2.0F, 2.0F, 2.0F, new Dilation(0.0F)), ModelTransform.rotation(0.0F, 24.0F, 0.0F));
-		return TexturedModelData.of(modelData, 16, 16);
+		ModelPartData bb_main = modelPartData.addChild("bb_main", ModelPartBuilder.create().uv(0, 12).cuboid(-1.0F, -2.0F, -6.0F, 2.0F, 2.0F, 10.0F, new Dilation(0.0F))
+		.uv(14, 12).cuboid(-1.5F, -4.0F, 3.0F, 3.0F, 3.0F, 3.0F, new Dilation(0.0F))
+		.uv(0, 4).cuboid(-2.3F, -3.0F, 4.5F, 1.5F, 1.5F, 1.5F, new Dilation(0.0F))
+		.uv(0, 0).cuboid(0.7F, -3.0F, 4.5F, 1.5F, 1.5F, 1.5F, new Dilation(0.0F)), ModelTransform.origin(0.0F, 24.0F, 0.0F));
+
+		ModelPartData cube_r1 = bb_main.addChild("cube_r1", ModelPartBuilder.create().uv(0, 0).cuboid(-0.7F, 2.0F, -4.0F, 0.2F, 6.0F, 0.2F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.5236F, 0.0F, 0.3491F));
+
+		ModelPartData cube_r2 = bb_main.addChild("cube_r2", ModelPartBuilder.create().uv(0, 0).cuboid(-0.7F, 0.0F, -1.0F, 0.2F, 6.0F, 0.2F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.3491F));
+
+		ModelPartData cube_r3 = bb_main.addChild("cube_r3", ModelPartBuilder.create().uv(0, 0).cuboid(-0.7F, 1.0F, 2.0F, 0.2F, 6.0F, 0.2F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.5236F, 0.0F, 0.3491F));
+
+		ModelPartData cube_r4 = bb_main.addChild("cube_r4", ModelPartBuilder.create().uv(0, 0).cuboid(0.3F, 2.0F, -4.0F, 0.2F, 6.0F, 0.2F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.5236F, 0.0F, -0.3491F));
+
+		ModelPartData cube_r5 = bb_main.addChild("cube_r5", ModelPartBuilder.create().uv(0, 0).cuboid(0.3F, 0.0F, -1.0F, 0.2F, 6.0F, 0.2F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -0.3491F));
+
+		ModelPartData cube_r6 = bb_main.addChild("cube_r6", ModelPartBuilder.create().uv(0, 0).cuboid(0.3F, 1.0F, 2.0F, 0.2F, 6.0F, 0.2F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.5236F, 0.0F, -0.3491F));
+
+		ModelPartData cube_r7 = bb_main.addChild("cube_r7", ModelPartBuilder.create().uv(0, 0).cuboid(1.0F, -1.1F, -3.5F, 12.0F, 0.1F, 6.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -0.5236F));
+
+		ModelPartData cube_r8 = bb_main.addChild("cube_r8", ModelPartBuilder.create().uv(0, 6).cuboid(-13.0F, -1.1F, -3.5F, 12.0F, 0.1F, 6.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.5236F));
+
+		ModelPartData cube_r9 = bb_main.addChild("cube_r9", ModelPartBuilder.create().uv(0, 8).cuboid(-0.3F, -1.0F, 5.0F, 0.8F, 4.0F, 0.8F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.1745F, 0.0F, 0.0F));
+		return TexturedModelData.of(modelData, 64, 64);
 	}
 	public void setAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 	}
