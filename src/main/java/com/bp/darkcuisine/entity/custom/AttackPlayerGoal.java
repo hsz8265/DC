@@ -7,11 +7,11 @@ import net.minecraft.entity.ai.goal.TrackTargetGoal;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
 
-public class FuckPlayerGoal extends MeleeAttackGoal {
+public class AttackPlayerGoal extends MeleeAttackGoal {
 
 
 
-    public FuckPlayerGoal(PathAwareEntity mob, double speed, boolean pauseWhenMobIdle) {
+    public AttackPlayerGoal(PathAwareEntity mob, double speed, boolean pauseWhenMobIdle) {
         super(mob, speed, pauseWhenMobIdle);
     }
 

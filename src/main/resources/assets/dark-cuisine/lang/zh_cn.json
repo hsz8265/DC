@@ -5,6 +5,7 @@
   "item.dark-cuisine.cooked_mosquito_cake": "熟蚊子饼",
   "item.dark-cuisine.mosquito_cake": "生蚊子饼",
   "item.dark-cuisine.mosquito_corpse": "蚊子尸块",
-  "item.dark-cuisine.mosquito_spawn_egg": "蚊子刷怪蛋"
+  "item.dark-cuisine.mosquito_spawn_egg": "蚊子刷怪蛋",
+  "entity.dark-cuisine.mosquito": "蚊子"
 
 }
