@@ -11,6 +11,10 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -40,6 +44,11 @@ public class DarkCuisine implements ModInitializer {
 		// Proceed with mild caution.
 		ModItems.regModItems();
 		DarkCuisineItemGroup.initialize();
+
+
+		Registry.register(Registries.SOUND_EVENT, Identifier.of(DarkCuisine.MOD_ID,"mos"), SoundEvent.of(Identifier.of(DarkCuisine.MOD_ID,"mos")));
+
+
 		LOGGER.info("Hello Fabric world!");
 
 		FabricDefaultAttributeRegistry.register(mosquito, tsteEntity.createAttributes());
