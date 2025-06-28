@@ -9,11 +9,21 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.*;
+import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+import java.util.Random;
+
 import static com.bp.darkcuisine.entity.MobEntities.mosquito;
+import static net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.START_SLEEPING;
 
 public class DarkCuisine implements ModInitializer {
 	public static final String MOD_ID = "dark-cuisine";
@@ -59,5 +69,41 @@ public class DarkCuisine implements ModInitializer {
 				}
 			}, SpawnGroup.CREATURE, mosquitoCopy, 40, 2, 3);
 
+		START_SLEEPING.register((player, bedPos) -> {
+			World world = player.getWorld();
+			if (world.isClient) return;
+
+			if(!player.isPlayer()) return;
+			// 检查维度（仅主世界）
+			//if (world.getRegistryKey() != World.OVERWORLD) return;
+			var wendu =world.getBiome(bedPos).value().getTemperature();
+			if(wendu<=0.5f) return;
+			// 检查时间（夜晚或雷暴）
+			long time = world.getTimeOfDay() % 24000;
+			//boolean isNight = time >= 12541 && time <= 23458;
+			//boolean isThundering = world.isThundering();
+			//if (!isNight && !isThundering) return;
+			if(new Random().nextFloat()>(wendu-0.5f)/3f) return;
+			// 检查周围是否有怪物（简化版）
+			//if (!isSafeAroundBed((PlayerEntity) player, bedPos)) return;
+
+
+			Vec3d pos = player.getPos();
+			Vec3d lookVec = player.getRotationVector().multiply(2.0); // 生成在玩家前方
+			Vec3d spawnPos = pos.add(lookVec);
+			tsteEntity entity = new tsteEntity(MobEntities.mosquito,world);
+			entity.refreshPositionAndAngles(spawnPos.x, spawnPos.y+2f, spawnPos.z, player.getYaw(), 0);
+			world.spawnEntity(entity);
+
+		});
+
+	}
+
+	private boolean isSafeAroundBed(PlayerEntity player, BlockPos bedPos) {
+		Box area = new Box(bedPos).expand(8, 5, 8); // 水平8格，垂直5格
+		List<HostileEntity> monsters = player.getWorld().getEntitiesByClass(
+				HostileEntity.class, area, e -> e.isAlive()
+		);
+		return monsters.isEmpty();
 	}
 }
