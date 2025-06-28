@@ -9,4 +9,5 @@ import net.minecraft.entity.AnimationState;
 @Environment(EnvType.CLIENT)
 public class tstEntityRenderState extends LivingEntityRenderState {
     public final AnimationState flyAnimationState = new AnimationState();
+    public final AnimationState attackAnimationState = new AnimationState();
 }

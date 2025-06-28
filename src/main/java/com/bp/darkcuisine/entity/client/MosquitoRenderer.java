@@ -28,6 +28,7 @@ public class MosquitoRenderer extends MobEntityRenderer<tsteEntity, tstEntityRen
     public void updateRenderState(tsteEntity livingEntity, tstEntityRenderState livingEntityRenderState, float f) {
         super.updateRenderState(livingEntity, livingEntityRenderState, f);
         livingEntityRenderState.flyAnimationState.copyFrom(tsteEntity.flyAnimationState);
+        livingEntityRenderState.attackAnimationState.copyFrom(tsteEntity.attackAnimationState);
     }
 
     @Override
