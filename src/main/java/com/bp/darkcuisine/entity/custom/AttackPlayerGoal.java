@@ -1,6 +1,7 @@
 package com.bp.darkcuisine.entity.custom;
 
 import com.bp.darkcuisine.DarkCuisine;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.TrackTargetGoal;
