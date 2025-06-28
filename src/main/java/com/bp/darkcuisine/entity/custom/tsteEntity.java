@@ -28,6 +28,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class tsteEntity extends AnimalEntity {
     public static final AnimationState flyAnimationState = new AnimationState();
+    public static final AnimationState attackAnimationState=new AnimationState();
     public tsteEntity(EntityType<? extends tsteEntity> entityType, World world) {
         super(entityType, world);
         this.moveControl = new FlightMoveControl(this,20,true);

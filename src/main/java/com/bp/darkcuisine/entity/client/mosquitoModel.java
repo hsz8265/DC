@@ -17,6 +17,7 @@ public class mosquitoModel extends EntityModel<tstEntityRenderState> {
 	private final ModelPart wingl;
 	private final ModelPart bb_main;
 	private final Animation flyAnimation;
+	private final Animation attackAnimation;
 	public mosquitoModel(ModelPart root) {
 		super(root);
 		this.bone = root.getChild("bone");
@@ -24,6 +25,7 @@ public class mosquitoModel extends EntityModel<tstEntityRenderState> {
 		this.wingl = root.getChild("wingl");
 		this.bb_main = root.getChild("bb_main");
 		this.flyAnimation=mosquitoAnimations.fly.createAnimation(root);
+		this.attackAnimation=mosquitoAnimations.attack.createAnimation(root);
 	}
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
@@ -62,6 +64,7 @@ public class mosquitoModel extends EntityModel<tstEntityRenderState> {
 	{
 		super.setAngles(tstEntityRenderState);
 		this.flyAnimation.apply(tstEntityRenderState.flyAnimationState,tstEntityRenderState.age);
+		this.attackAnimation.apply(tstEntityRenderState.attackAnimationState,tstEntityRenderState.age);
 	}
 
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
