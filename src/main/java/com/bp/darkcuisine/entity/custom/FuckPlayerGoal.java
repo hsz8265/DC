@@ -30,5 +30,6 @@ public class FuckPlayerGoal extends MeleeAttackGoal {
     @Override
     protected void attack(LivingEntity target) {
         super.attack(getServerWorld(mob).getClosestPlayer(mob,30));
+        ((tsteEntity)mob).Attack();
     }
 }

@@ -79,6 +79,10 @@ public class tsteEntity extends HostileEntity {
     protected EntityNavigation createNavigation(World world) {
         return new BirdNavigation(this, world);
     }
+    public void Attack()
+    {
+        attackAnimationState.startIfNotRunning(this.age);
+    }
 
     @Override
     protected void initGoals() {

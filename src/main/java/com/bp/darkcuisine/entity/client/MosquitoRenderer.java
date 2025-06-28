@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
  */
 public class MosquitoRenderer extends MobEntityRenderer<tsteEntity, tstEntityRenderState,mosquitoModel> {
 
-    private static final Identifier TEXTURE = Identifier.of(DarkCuisine.MOD_ID,"textures/item/TEXTURE.png");
+    private static final Identifier TEXTURE = Identifier.of(DarkCuisine.MOD_ID,"textures/item/white.png");
     public static final EntityModelLayer MODEL_CUBE_LAYER = new EntityModelLayer(Identifier.of(DarkCuisine.MOD_ID, "mosquito"), "bone");
     public MosquitoRenderer(EntityRendererFactory.Context context) {
         super(context, new mosquitoModel(context.getPart(MODEL_CUBE_LAYER)), 0.5f);
