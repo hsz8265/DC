@@ -21,6 +21,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -56,12 +57,6 @@ public class tsteEntity extends HostileEntity {
     @Override
     public void tick(){
         super.tick();
-        if(getWorld().getClosestPlayer(this,30)!=null){
-            getMoveControl().moveTo(getWorld().getClosestPlayer(this,30).getX(),getWorld().getClosestPlayer(this,30).getY(),getWorld().getClosestPlayer(this,30).getZ(),0.5f);
-        }
-
-
-
         if(!this.isOnGround()){
 
             this.setMovementSpeed(0.3f);
@@ -70,6 +65,9 @@ public class tsteEntity extends HostileEntity {
         else
         {
             flyAnimationState.stop();
+        }
+        if(getWorld().getClosestPlayer(this,30)!=null&&(getWorld().getClosestPlayer(this,30).getGameMode()== GameMode.SURVIVAL||getWorld().getClosestPlayer(this,30).getGameMode()== GameMode.ADVENTURE)){
+            getMoveControl().moveTo(getWorld().getClosestPlayer(this,30).getX(),getWorld().getClosestPlayer(this,30).getY(),getWorld().getClosestPlayer(this,30).getZ(),0.5f);
         }
 
     }
@@ -91,7 +89,7 @@ public class tsteEntity extends HostileEntity {
         this.targetSelector.add(0,new RevengeGoal(this));
         DarkCuisine.LOGGER.info(this.getTarget()==null?"1":"2");
         //this.goalSelector.add(2,new MeleeAttackGoal(this,1.0,false));
-        //this.goalSelector.add(2,new FlyGoal(this,1));
+        this.goalSelector.add(2,new FlyGoal(this,1));
         //this.goalSelector.add(1,new RevengeGoal(this));
 
     }

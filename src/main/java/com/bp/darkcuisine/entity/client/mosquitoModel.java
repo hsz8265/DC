@@ -2,7 +2,10 @@ package com.bp.darkcuisine.entity.client;
 
 import com.bp.darkcuisine.entity.client.tstEntityRenderState;
 import net.minecraft.client.model.*;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.animation.Animation;
 import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.util.math.MatrixStack;
 
 // Made with Blockbench 4.12.5
 // Exported for Minecraft version 1.17+ for Yarn
@@ -12,12 +15,16 @@ public class mosquitoModel extends EntityModel<tstEntityRenderState> {
 	private final ModelPart bone;
 	private final ModelPart wingr;
 	private final ModelPart wingl;
+	private final Animation flyAnimation;
+	private final Animation attackAnimation;
 	public mosquitoModel(ModelPart root) {
         super(root);
         this.all = root.getChild("all");
 		this.bone = this.all.getChild("bone");
 		this.wingr = this.all.getChild("wingr");
 		this.wingl = this.all.getChild("wingl");
+		this.flyAnimation=mosquitoAnimations.fly.createAnimation(root);
+		this.attackAnimation=mosquitoAnimations.attack.createAnimation(root);
 	}
 	public static TexturedModelData getTexturedModelData()  {
 		ModelData modelData = new ModelData();
@@ -51,5 +58,18 @@ public class mosquitoModel extends EntityModel<tstEntityRenderState> {
 
 		ModelPartData cube_r9 = wingl.addChild("cube_r9", ModelPartBuilder.create().uv(0, 0).cuboid(1.0F, -1.1F, -3.5F, 12.0F, 0.1F, 6.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -0.5236F));
 		return TexturedModelData.of(modelData, 64, 64);
+
+	}
+	public void setAngles(tstEntityRenderState tstEntityRenderState)
+	{
+		super.setAngles(tstEntityRenderState);
+		this.flyAnimation.apply(tstEntityRenderState.flyAnimationState,tstEntityRenderState.age);
+	}
+
+	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
+		bone.render(matrices, vertexConsumer, light, overlay);
+		wingr.render(matrices, vertexConsumer, light, overlay);
+		wingl.render(matrices, vertexConsumer, light, overlay);
+		all.render(matrices, vertexConsumer, light, overlay);
 	}
 }
