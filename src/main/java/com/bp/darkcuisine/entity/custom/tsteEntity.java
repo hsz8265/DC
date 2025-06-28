@@ -7,15 +7,13 @@ import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.ai.control.LookControl;
-import net.minecraft.entity.ai.goal.ActiveTargetGoal;
-import net.minecraft.entity.ai.goal.AnimalMateGoal;
-import net.minecraft.entity.ai.goal.FlyGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.BirdNavigation;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
@@ -26,7 +24,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class tsteEntity extends AnimalEntity {
+public class tsteEntity extends HostileEntity {
     public static final AnimationState flyAnimationState = new AnimationState();
     public static final AnimationState attackAnimationState=new AnimationState();
     public tsteEntity(EntityType<? extends tsteEntity> entityType, World world) {
@@ -44,27 +42,27 @@ public class tsteEntity extends AnimalEntity {
         float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0f, 1.0f) : 0.0f;
         this.limbAnimator.updateLimbs(f, 0.2f,1);
     }
-    @Override
-    public boolean isBreedingItem(ItemStack stack) {
-        return false;
-    }
-
-    @Override
-    public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        return null;
-    }
 
     public static DefaultAttributeContainer createAttributes(){
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.MAX_HEALTH,5.0)
                 .add(EntityAttributes.MOVEMENT_SPEED,0.5f)
                 .add(EntityAttributes.FLYING_SPEED,0.5f)
+                .add(EntityAttributes.ATTACK_DAMAGE,1)
+                .add(EntityAttributes.FOLLOW_RANGE,10)
                 .build();
     }
 
     @Override
     public void tick(){
         super.tick();
+        if(getWorld().getClosestPlayer(this,30)!=null){
+            DarkCuisine.LOGGER.debug("fuck");
+            getMoveControl().moveTo(getWorld().getClosestPlayer(this,30).getX(),getWorld().getClosestPlayer(this,30).getY(),getWorld().getClosestPlayer(this,30).getZ(),0.5f);
+        }
+
+
+
         if(!this.isOnGround()){
 
             this.setMovementSpeed(0.3f);
@@ -84,9 +82,15 @@ public class tsteEntity extends AnimalEntity {
 
     @Override
     protected void initGoals() {
-        this.targetSelector.add(0, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
-        this.goalSelector.add(1,new MeleeAttackGoal(this,1.0,false));
-        this.goalSelector.add(2,new FlyGoal(this,1));
+        //this.setTarget(getWorld().getClosestPlayer(this,30));
+        this.goalSelector.add(0,new FuckPlayerGoal(this,0.5,false));
+        this.targetSelector.add(0, new ActiveTargetGoal(this, PlayerEntity.class, true));
+        this.targetSelector.add(0,new RevengeGoal(this));
+
+        //this.goalSelector.add(2,new MeleeAttackGoal(this,1.0,false));
+        //this.goalSelector.add(2,new FlyGoal(this,1));
+        //this.goalSelector.add(1,new RevengeGoal(this));
+
     }
 
 
