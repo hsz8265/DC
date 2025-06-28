@@ -21,6 +21,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -100,5 +102,11 @@ public class tsteEntity extends HostileEntity {
     @Override
     protected void dropLoot(ServerWorld world, DamageSource damageSource, boolean causedByPlayer) {
         super.dropLoot(world, damageSource, causedByPlayer);
+    }
+
+
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return SoundEvent.of(Identifier.of(DarkCuisine.MOD_ID,"mos"));
     }
 }
