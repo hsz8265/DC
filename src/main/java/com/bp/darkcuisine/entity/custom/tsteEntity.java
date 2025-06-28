@@ -85,7 +85,7 @@ public class tsteEntity extends HostileEntity {
         this.goalSelector.add(0,new FuckPlayerGoal(this,0.5,false));
         this.targetSelector.add(0, new ActiveTargetGoal(this, PlayerEntity.class, true));
         this.targetSelector.add(0,new RevengeGoal(this));
-
+        DarkCuisine.LOGGER.info(this.getTarget()==null?"1":"2");
         //this.goalSelector.add(2,new MeleeAttackGoal(this,1.0,false));
         //this.goalSelector.add(2,new FlyGoal(this,1));
         //this.goalSelector.add(1,new RevengeGoal(this));
