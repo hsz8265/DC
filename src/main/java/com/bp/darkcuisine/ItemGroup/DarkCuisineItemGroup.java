@@ -3,6 +3,7 @@ package com.bp.darkcuisine.ItemGroup;
 import com.bp.darkcuisine.item.ModItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.client.resource.language.I18n;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
