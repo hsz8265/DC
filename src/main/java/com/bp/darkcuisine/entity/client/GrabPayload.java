@@ -10,27 +10,25 @@ import net.minecraft.util.Identifier;
 import static net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking.registerGlobalReceiver;
 
 public record GrabPayload() implements CustomPayload {
-    public static final Id<GrabPayload> ID = new Id<>(Identifier.of("dark-cuisine", "grab"));
+    // 1. 定义Payload ID
+    public static final CustomPayload.Id<GrabPayload> ID =
+            new CustomPayload.Id<>(Identifier.of("dark-cuisine", "grab"));
 
-    // 从字节缓冲区构造
-    public GrabPayload(PacketByteBuf buf) {
-        this(); // 不需要读取数据
-    }
+    // 2. 定义CODEC（序列化/反序列化逻辑）
+    public static final PacketCodec<PacketByteBuf, GrabPayload> CODEC =
+            PacketCodec.ofStatic(
+                    (payload, buf) -> {
+                        // 序列化 - 空负载不需要写入任何数据
+                    },
+                    buf -> {
+                        // 反序列化 - 创建新实例
+                        return new GrabPayload();
+                    }
+            );
 
-    public GrabPayload(GrabPayload grabPayload, ClientPlayNetworking.Context context) {
-        this();
-    }
-    public GrabPayload() {
-        // 空构造函数
-    }
-
-    // 写入字节缓冲区
-    public void write(PacketByteBuf buf) {
-        // 空负载，不需要写入数据
-    }
-
+    // 3. 实现接口方法
     @Override
-    public Id<GrabPayload> getId() {
+    public Id<? extends CustomPayload> getId() {
         return ID;
     }
 }

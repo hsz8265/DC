@@ -3,7 +3,6 @@ package com.bp.darkcuisine;
 import com.bp.darkcuisine.ItemGroup.DarkCuisineItemGroup;
 import com.bp.darkcuisine.effect.FrogEffect;
 import com.bp.darkcuisine.entity.MobEntities;
-import com.bp.darkcuisine.entity.client.ClientInputHandler;
 import com.bp.darkcuisine.entity.client.GrabHandler;
 import com.bp.darkcuisine.entity.client.GrabPayload;
 import com.bp.darkcuisine.entity.custom.tsteEntity;
@@ -17,6 +16,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.client.option.KeyBinding;
@@ -58,6 +58,7 @@ public class DarkCuisine implements ModInitializer {
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public  final EntityType<tsteEntity> mosquitoCopy=MobEntities.mosquito;
+	public static KeyBinding GRAB_KEY;
 	//public static final KeyBinding GRAB_KEY = KeyBindingHelper.registerKeyBinding(
 			//new KeyBinding("key.dark-cuisine.grab", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_X, "category.dark-cuisine")
 	//);
@@ -66,20 +67,17 @@ public class DarkCuisine implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
-		PacketIdentifiers.register();
-
-		// 2. 注册服务端处理器
-		GrabHandler.registerServerPacket();
-
-		// 3. 注册按键绑定
-		KeyBindingHelper.registerKeyBinding(new KeyBinding(
-				"key.dark-cuisine.grab",
+		PayloadTypeRegistry.playC2S().register(
+				GrabPayload.ID,
+				GrabPayload.CODEC
+		);
+		GRAB_KEY = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+				"key." + MOD_ID + ".grab",
 				InputUtil.Type.KEYSYM,
 				GLFW.GLFW_KEY_X,
-				"category.dark-cuisine"
+				"category." + MOD_ID
 		));
-
-		// 客户端注册
+		GrabHandler.registerServerPacket();
 		//ClientTickEvents.END_CLIENT_TICK.register(new ClientInputHandler());
 
 		// 服务端逻辑注册
@@ -156,7 +154,7 @@ public class DarkCuisine implements ModInitializer {
 		);
 		return monsters.isEmpty();
 	}
-	public class PacketIdentifiers {
+	/*public class PacketIdentifiers {
 		public static final CustomPayload.Id<GrabPayload> GRAB_PACKET_ID = GrabPayload.ID;
 
 		public static void register() {
@@ -201,5 +199,5 @@ public class DarkCuisine implements ModInitializer {
 		}
 
 		// getTargetedEntity 和 pullEntity 方法保持不变...
-	}
+	}*/
 }

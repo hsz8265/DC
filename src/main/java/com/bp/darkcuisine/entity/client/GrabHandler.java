@@ -1,6 +1,7 @@
 package com.bp.darkcuisine.entity.client;
 
 import com.bp.darkcuisine.DarkCuisine;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -25,8 +26,9 @@ public class GrabHandler {
 
     public static void registerServerPacket() {
         // 注册服务端处理器
+
         ServerPlayNetworking.registerGlobalReceiver(
-                DarkCuisine.PacketIdentifiers.GRAB_PACKET_ID,
+                GrabPayload.ID,
                 (payload, context) -> {
                     ServerPlayerEntity player = context.player();
                     player.getServer().execute(() -> {

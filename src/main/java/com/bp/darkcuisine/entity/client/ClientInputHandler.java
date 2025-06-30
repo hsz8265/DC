@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 
-@Environment(EnvType.CLIENT)
+/*@Environment(EnvType.CLIENT)
 public class ClientInputHandler implements ClientTickEvents.EndTick {
     @Override
     public void onEndTick(MinecraftClient client) {
@@ -18,4 +18,4 @@ public class ClientInputHandler implements ClientTickEvents.EndTick {
             }
         }
     }
-}
+}*/

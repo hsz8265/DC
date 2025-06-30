@@ -10,6 +10,9 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+
+import static com.bp.darkcuisine.DarkCuisine.GRAB_KEY;
 
 @Environment(EnvType.CLIENT)
 public class EntityClient implements ClientModInitializer {
@@ -18,22 +21,16 @@ public class EntityClient implements ClientModInitializer {
         EntityRendererRegistry.register(MobEntities.mosquito,(ctx -> {return new MosquitoRenderer(ctx);}));
         //EntityRendererRegistry.register(EntityTesting.tststtttttt,Renderer::new);
         EntityModelLayerRegistry.registerModelLayer(MosquitoRenderer.MODEL_CUBE_LAYER,mosquitoModel::getTexturedModelData);
-        ClientTickEvents.END_CLIENT_TICK.register(new ClientInputHandler());
+
+
+        // 2. 注册按键处理器
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (KeyInputHandler.GRAB_KEY.wasPressed()) {
+            while (GRAB_KEY.wasPressed()) {
                 if (client.player != null) {
-                    // 发送抓取请求
+                    // 创建并发送Payload
                     ClientPlayNetworking.send(new GrabPayload());
                 }
             }
         });
-
-        // 2. 注册客户端Payload接收器
-        ClientPlayNetworking.registerGlobalReceiver(
-                DarkCuisine.PacketIdentifiers.GRAB_PACKET_ID,
-                (payload, context) -> {
-                    // 客户端不需要处理，但需要注册类型
-                }
-        );
     }
 }
