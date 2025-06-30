@@ -45,8 +45,6 @@ import java.util.Random;
 
 import static com.bp.darkcuisine.effect.FrogEffect.*;
 import static com.bp.darkcuisine.entity.MobEntities.mosquito;
-import static com.bp.darkcuisine.entity.client.GrabHandler.getTargetedEntity;
-import static com.bp.darkcuisine.entity.client.GrabHandler.pullEntity;
 import static net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.registerGlobalReceiver;
 import static net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.START_SLEEPING;
 

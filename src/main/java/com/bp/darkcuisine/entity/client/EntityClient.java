@@ -29,6 +29,7 @@ public class EntityClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (GRAB_KEY.wasPressed()) {
                 if (client.player != null) {
+                    DarkCuisine.LOGGER.info("Send");
                     ClientPlayNetworking.send(new GrabPayload());
                 }
             }

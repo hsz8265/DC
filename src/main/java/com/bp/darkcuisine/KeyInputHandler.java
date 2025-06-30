@@ -14,6 +14,7 @@ public class KeyInputHandler {
 	public static void onClientTick(MinecraftClient client) {
 		while (GRAB_KEY.wasPressed()) {
 			if (client.player != null) {
+
 				ClientPlayNetworking.send(new GrabPayload());
 			}
 		}

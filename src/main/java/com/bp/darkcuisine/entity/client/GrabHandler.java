@@ -1,5 +1,6 @@
 package com.bp.darkcuisine.entity.client;
 
+import com.bp.darkcuisine.DarkCuisine;
 import com.bp.darkcuisine.entity.custom.TongueEntity;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
@@ -30,11 +31,15 @@ public class GrabHandler {
                 (payload, context) -> {
                     ServerPlayerEntity player = context.player();
                     player.getServer().execute(() -> {
+                        DarkCuisine.LOGGER.info("Get");
                         // 1. 检查冷却时间
                         //if (player.getItemCooldownManager().isCoolingDown(Items.DIAMOND)) {
                             //return; // 冷却中，不执行
                         //}
 
+
+                        Entity target  = getTargetedEntity(player,20);
+                        pullEntity(player,(LivingEntity) target);
                         TongueEntity tongue = new TongueEntity(
                                 player.getWorld(),
                                 player
@@ -86,6 +91,7 @@ public class GrabHandler {
     }
 
     public static void pullEntity(PlayerEntity player, LivingEntity target) {
+        DarkCuisine.LOGGER.info("Grabbing");
         // 计算从目标到玩家的方向向量
         Vec3d pullDirection = player.getPos()
                 .subtract(target.getPos())
@@ -93,7 +99,7 @@ public class GrabHandler {
 
         // 计算拉取力度（考虑距离因素）
         double distance = player.distanceTo(target);
-        double strength = 1.5 * (1.0 - Math.min(distance / 10.0, 0.8));
+        double strength = 15 * (1.0 - Math.min(distance / 10.0, 0.8));
 
         // 应用速度
         target.setVelocity(pullDirection.multiply(strength));
