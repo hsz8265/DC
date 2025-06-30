@@ -85,7 +85,6 @@ public class DarkCuisine implements ModInitializer {
 		// 注册服务端处理器
 		GrabHandler.registerServerPacket();
 		//ClientTickEvents.END_CLIENT_TICK.register(new ClientInputHandler());
-
 		// 服务端逻辑注册
 		ModItems.regModItems();
 		DarkCuisineItemGroup.initialize();

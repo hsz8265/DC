@@ -62,6 +62,6 @@ public class TongueRenderer extends EntityRenderer<TongueEntity, TongueRenderSta
                 .texture(textureU, textureV)
                 .overlay(OverlayTexture.DEFAULT_UV)
                 .light(light)
-                .normal(matrix, 0.0F, 1.0F, 0.0F);
+                .normal(matrix, 1.0F, 1.0F, 1.0F);
     }
 }

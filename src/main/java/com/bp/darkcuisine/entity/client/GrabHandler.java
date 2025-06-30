@@ -39,7 +39,11 @@ public class GrabHandler {
 
 
                         Entity target  = getTargetedEntity(player,20);
-                        pullEntity(player,(LivingEntity) target);
+                        if(target==null)
+                        {
+                            return;
+                        }
+                        //pullEntity(player,(LivingEntity) target);
                         TongueEntity tongue = new TongueEntity(
                                 player.getWorld(),
                                 player

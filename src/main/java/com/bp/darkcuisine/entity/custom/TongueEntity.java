@@ -18,9 +18,15 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.apache.commons.logging.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import static com.bp.darkcuisine.DarkCuisine.MOD_ID;
 
 public class TongueEntity extends ProjectileEntity {
-    private static final int MAX_LIFETIME = 20; // 1秒最大存在时间
+    private static final int MAX_LIFETIME = 100; // 1秒最大存在时间
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     private int ticksInAir = 0;
     private LivingEntity target;
 
@@ -35,7 +41,7 @@ public class TongueEntity extends ProjectileEntity {
 
         // 设置初始速度（玩家视线方向）
         Vec3d rotationVec = owner.getRotationVec(1.0F);
-        float speed = 10F;
+        float speed = 1F;
         this.setVelocity(rotationVec.x * speed, rotationVec.y * speed, rotationVec.z * speed);
     }
 
@@ -84,6 +90,7 @@ public class TongueEntity extends ProjectileEntity {
 
         // 碰撞检测
         EntityHitResult hitResult = ProjectileUtil.getEntityCollision(
+
                 this.getWorld(),
                 this,
                 this.getPos(),
@@ -104,6 +111,7 @@ public class TongueEntity extends ProjectileEntity {
         super.onEntityHit(hitResult);
         Entity entity = hitResult.getEntity();
 
+        LOGGER.info("Hiiiiiiiiiiiiiiiiiiiiiiiiiiit");
         if (entity instanceof LivingEntity livingEntity) {
             this.target = livingEntity;
             pullTarget();
@@ -120,7 +128,7 @@ public class TongueEntity extends ProjectileEntity {
 
             // 计算拉取力度
             double distance = player.distanceTo(target);
-            double strength = 1.8 * (1.0 - Math.min(distance / 10.0, 0.8));
+            double strength = 100 * (1.0 - Math.min(distance / 10.0, 0.8));
 
             // 应用速度
             target.setVelocity(pullDirection.multiply(strength));
