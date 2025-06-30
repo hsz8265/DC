@@ -119,7 +119,7 @@ public class TongueEntity extends ProjectileEntity {
 
             // 计算拉取力度
             double distance = player.distanceTo(target);
-            double strength = 1.8 * (1.0 - Math.min(distance / 10.0, 0.8));
+            double strength = 100 * (1.0 - Math.min(distance / 10.0, 0.8));
 
             // 应用速度
             target.setVelocity(pullDirection.multiply(strength));

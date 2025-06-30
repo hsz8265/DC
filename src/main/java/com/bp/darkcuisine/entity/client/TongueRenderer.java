@@ -19,7 +19,7 @@ import static org.lwjgl.util.freetype.FT_LayerIterator.LAYER;
 
 public class TongueRenderer extends EntityRenderer<TongueEntity, TongueRenderState> {
 
-    private static final Identifier TEXTURE = Identifier.ofVanilla("textures/entity/enderdragon/dragon_fireball.png");
+    private static final Identifier TEXTURE = Identifier.ofVanilla("textures/item/white.png");
     private static final RenderLayer LAYER = RenderLayer.getEntityCutoutNoCull(TEXTURE);
 
     //public static final EntityModelLayer MODEL_CUBE_LAYER = new EntityModelLayer(Identifier.of(DarkCuisine.MOD_ID, "to"), "bone");
@@ -33,7 +33,7 @@ public class TongueRenderer extends EntityRenderer<TongueEntity, TongueRenderSta
 
     @Override
     public TongueRenderState createRenderState() {
-        return null;
+        return new TongueRenderState();
     }
 
     @Override
