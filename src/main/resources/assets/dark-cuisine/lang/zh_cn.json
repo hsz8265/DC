@@ -7,7 +7,8 @@
   "item.dark-cuisine.mosquito_corpse": "蚊子尸块",
   "item.dark-cuisine.mosquito_spawn_egg": "蚊子刷怪蛋",
   "entity.dark-cuisine.mosquito": "蚊子",
-  "key.darkcuisine.grab": "抓取对象",
-  "category.darkcuisine": "黑暗料理",
-  "darkcuisine:grab": "抓取"
+  "entity.dark-cuisine.tongue": "Frog Tongue",
+  "subtitles.entity.frog.tongue": "Frog tongue snaps",
+  "key.dark-cuisine.grab": "Frog Tongue",
+  "category.dark-cuisine": "Dark Cuisine"
 }

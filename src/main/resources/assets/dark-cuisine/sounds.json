@@ -4,5 +4,12 @@
     "sounds": [
       "dark-cuisine:mosquitosound"
     ]
-  }
+  },
+  "entity.frog.tongue": {
+    "sounds": [
+      "dark-cuisine:entity/frog/tongue1",
+      "dark-cuisine:entity/frog/tongue2"
+    ],
+    "subtitle": "subtitles.entity.frog.tongue"
+
 }

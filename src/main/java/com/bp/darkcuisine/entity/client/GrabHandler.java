@@ -1,13 +1,11 @@
 package com.bp.darkcuisine.entity.client;
 
-import com.bp.darkcuisine.DarkCuisine;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import com.bp.darkcuisine.entity.custom.TongueEntity;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
-import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -37,37 +35,30 @@ public class GrabHandler {
                             //return; // 冷却中，不执行
                         //}
 
-                        // 2. 获取玩家瞄准的生物
-                        Entity target = getTargetedEntity(player, DEFAULT_RANGE);
-
-                        // 3. 检查目标是否有效
-                        if (target instanceof LivingEntity livingTarget) {
-                            // 4. 拉取生物
-                            pullEntity(player, livingTarget);
-
-                            // 5. 造成伤害
-                            livingTarget.damage(
-                                    player.getWorld(),
-                                    player.getDamageSources().playerAttack(player),
-                                    DEFAULT_DAMAGE
-                            );
-
-                            // 6. 添加视觉效果
-                            spawnPullParticles(player.getWorld(), livingTarget.getPos());
-                            playPullSound(player.getWorld(), livingTarget.getPos());
-
+                        TongueEntity tongue = new TongueEntity(
+                                player.getWorld(),
+                                player
+                        );
+                        player.getWorld().spawnEntity(tongue);
                             // 7. 设置冷却时间
                             //player.getItemCooldownManager().set(Items.DIAMOND, COOLDOWN_TICKS);
 
                             // 8. 消耗饥饿值（可选）
                             if (!player.isCreative()) {
-                                player.addExhaustion(2.0f); // 消耗2点饥饿值
+                                player.getWorld().playSound(
+                                        null,
+                                        player.getX(), player.getY(), player.getZ(),
+                                        SoundEvents.ENTITY_FROG_EAT,
+                                        SoundCategory.PLAYERS,
+                                        0.7f,
+                                        1.2f + player.getRandom().nextFloat() * 0.2f);
+                                player.addExhaustion(2.0f);
+                                // 消耗2点饥饿值
                             }
-                        }
+                        });
                     });
                 }
-        );
-    }
+
 
     public static Entity getTargetedEntity(PlayerEntity player, double range) {
         Vec3d start = player.getEyePos();

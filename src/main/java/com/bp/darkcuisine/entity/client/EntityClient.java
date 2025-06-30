@@ -23,11 +23,12 @@ public class EntityClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(MosquitoRenderer.MODEL_CUBE_LAYER,mosquitoModel::getTexturedModelData);
 
 
-        // 2. 注册按键处理器
+        EntityRendererRegistry.register(MobEntities.TONGUE,(ctx -> {return new TongueRenderer(ctx);}));
+
+        // 注册按键处理器
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (GRAB_KEY.wasPressed()) {
                 if (client.player != null) {
-                    // 创建并发送Payload
                     ClientPlayNetworking.send(new GrabPayload());
                 }
             }

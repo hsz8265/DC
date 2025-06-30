@@ -71,12 +71,20 @@ public class DarkCuisine implements ModInitializer {
 				GrabPayload.ID,
 				GrabPayload.CODEC
 		);
-		GRAB_KEY = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+
+		// 注册按键绑定
+		GRAB_KEY = new KeyBinding(
 				"key." + MOD_ID + ".grab",
 				InputUtil.Type.KEYSYM,
 				GLFW.GLFW_KEY_X,
 				"category." + MOD_ID
-		));
+		);
+		KeyBindingHelper.registerKeyBinding(GRAB_KEY);
+
+		// 注册实体
+		MobEntities.register();
+
+		// 注册服务端处理器
 		GrabHandler.registerServerPacket();
 		//ClientTickEvents.END_CLIENT_TICK.register(new ClientInputHandler());
 
