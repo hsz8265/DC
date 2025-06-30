@@ -73,10 +73,10 @@ public class DarkCuisine implements ModInitializer {
 
 		// 3. 注册按键绑定
 		KeyBindingHelper.registerKeyBinding(new KeyBinding(
-				"key.com.bp.darkcuisine.grab",
+				"key.dark-cuisine.grab",
 				InputUtil.Type.KEYSYM,
 				GLFW.GLFW_KEY_X,
-				"category.com.bp.darkcuisine"
+				"category.dark-cuisine"
 		));
 
 		// 客户端注册

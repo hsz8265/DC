@@ -6,5 +6,8 @@
   "item.dark-cuisine.mosquito_cake": "mosquito cake",
   "item.dark-cuisine.mosquito_corpse": "mosquito corpse",
   "item.dark-cuisine.mosquito_spawn_egg": "mosquito spawn egg",
-  "entity.dark-cuisine.mosquito": "mosquito"
+  "entity.dark-cuisine.mosquito": "mosquito",
+  "key.darkcuisine.grab": "Grab Entity",
+  "category.darkcuisine": "Dark Cuisine",
+  "dark-cuisine.grab": "Grab"
 }

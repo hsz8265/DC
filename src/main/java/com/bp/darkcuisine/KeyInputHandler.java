@@ -7,6 +7,6 @@ import org.lwjgl.glfw.GLFW;
 
 public class KeyInputHandler {
 	public static final KeyBinding GRAB_KEY = KeyBindingHelper.registerKeyBinding(
-			new KeyBinding("key.mod.grab", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_X, "category.mod")
+			new KeyBinding("key.dark-cuisine.grab", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_X, "category.dark-cuisine")
 	);
 }

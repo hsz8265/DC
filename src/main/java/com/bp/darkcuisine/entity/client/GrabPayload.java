@@ -1,12 +1,16 @@
 package com.bp.darkcuisine.entity.client;
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 
+import static net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking.registerGlobalReceiver;
+
 public record GrabPayload() implements CustomPayload {
-    public static final Id<GrabPayload> ID = new Id<>(Identifier.of("com.bp.darkcuisine", "grab"));
+    public static final Id<GrabPayload> ID = new Id<>(Identifier.of("dark-cuisine", "grab"));
 
     // 从字节缓冲区构造
     public GrabPayload(PacketByteBuf buf) {
