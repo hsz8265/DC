@@ -1,6 +1,7 @@
 package com.bp.darkcuisine;
 
 import com.bp.darkcuisine.ItemGroup.DarkCuisineItemGroup;
+import com.bp.darkcuisine.effect.FrogEffect;
 import com.bp.darkcuisine.entity.MobEntities;
 import com.bp.darkcuisine.entity.custom.tsteEntity;
 import com.bp.darkcuisine.item.ModItems;
@@ -48,6 +49,7 @@ public class DarkCuisine implements ModInitializer {
 
 		Registry.register(Registries.SOUND_EVENT, Identifier.of(DarkCuisine.MOD_ID,"mos"), SoundEvent.of(Identifier.of(DarkCuisine.MOD_ID,"mos")));
 
+		Registry.registerReference(Registries.STATUS_EFFECT,Identifier.of(DarkCuisine.MOD_ID,"frog-e"),new FrogEffect());
 
 		LOGGER.info("Hello Fabric world!");
 
