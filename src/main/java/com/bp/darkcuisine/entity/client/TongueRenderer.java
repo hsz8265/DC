@@ -15,11 +15,12 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 
+import static com.bp.darkcuisine.entity.client.MosquitoRenderer.MODEL_CUBE_LAYER;
 import static org.lwjgl.util.freetype.FT_LayerIterator.LAYER;
 
 public class TongueRenderer extends EntityRenderer<TongueEntity, TongueRenderState> {
 
-    private static final Identifier TEXTURE = Identifier.ofVanilla("textures/item/white.png");
+    private static final Identifier TEXTURE = Identifier.of("textures/item/cooked_mosquito_cake.png");
     private static final RenderLayer LAYER = RenderLayer.getEntityCutoutNoCull(TEXTURE);
 
     //public static final EntityModelLayer MODEL_CUBE_LAYER = new EntityModelLayer(Identifier.of(DarkCuisine.MOD_ID, "to"), "bone");

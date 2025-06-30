@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.nbt.NbtCompound;
@@ -34,7 +35,7 @@ public class TongueEntity extends ProjectileEntity {
 
         // 设置初始速度（玩家视线方向）
         Vec3d rotationVec = owner.getRotationVec(1.0F);
-        float speed = 1.5F;
+        float speed = 10F;
         this.setVelocity(rotationVec.x * speed, rotationVec.y * speed, rotationVec.z * speed);
     }
 
@@ -119,7 +120,7 @@ public class TongueEntity extends ProjectileEntity {
 
             // 计算拉取力度
             double distance = player.distanceTo(target);
-            double strength = 100 * (1.0 - Math.min(distance / 10.0, 0.8));
+            double strength = 1.8 * (1.0 - Math.min(distance / 10.0, 0.8));
 
             // 应用速度
             target.setVelocity(pullDirection.multiply(strength));
