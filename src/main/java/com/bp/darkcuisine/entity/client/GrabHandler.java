@@ -38,15 +38,16 @@ public class GrabHandler {
                         //}
 
 
-                        Entity target  = getTargetedEntity(player,20);
-                        if(target==null)
-                        {
-                            return;
-                        }
+                        //Entity target  = getTargetedEntity(player,20);
+                        //if(target==null)
+                        //{
+                            //return;
+                        //}
                         //pullEntity(player,(LivingEntity) target);
                         TongueEntity tongue = new TongueEntity(
                                 player.getWorld(),
-                                player
+                                player,
+                                1f
                         );
                         player.getWorld().spawnEntity(tongue);
                             // 7. 设置冷却时间

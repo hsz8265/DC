@@ -25,25 +25,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.bp.darkcuisine.DarkCuisine.MOD_ID;
-
 public class TongueEntity extends ProjectileEntity {
-    private static final int MAX_LIFETIME = 100; // 1秒最大存在时间
+    private static final int MAX_LIFETIME = 8; // 0.4秒最大存在时间
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     private int ticksInAir = 0;
     private LivingEntity target;
+    public float damage =0f;
+    public float speed=1f;
 
     public TongueEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public TongueEntity(World world, PlayerEntity owner) {
+    public TongueEntity(World world, PlayerEntity owner,float speed) {
         super(MobEntities.TONGUE, world);
         this.setOwner(owner);
         this.setPosition(owner.getX(), owner.getEyeY(), owner.getZ());
 
+        this.speed=speed;
         // 设置初始速度（玩家视线方向）
         Vec3d rotationVec = owner.getRotationVec(1.0F);
-        float speed = 1F;
         this.setVelocity(rotationVec.x * speed, rotationVec.y * speed, rotationVec.z * speed);
     }
 
@@ -127,6 +128,7 @@ public class TongueEntity extends ProjectileEntity {
         //super.onEntityHit(hitResult);
         Entity entity = hitResult.getEntity();
 
+
         DarkCuisine.LOGGER.info("Hiiiiiiiiiiiiiiiiiiiiiiiiiiit");
         if (entity instanceof LivingEntity livingEntity) {
             this.target = livingEntity;
@@ -144,14 +146,16 @@ public class TongueEntity extends ProjectileEntity {
 
             // 计算拉取力度
             double distance = player.distanceTo(target);
-            double strength = 20 * (1.0 - Math.min(distance / 10.0, 0.8));
+            double strength = 0.4*distance;
 
             // 应用速度
             target.setVelocity(pullDirection.multiply(strength));
             target.velocityModified = true;
 
             // 造成伤害
-            target.damage((ServerWorld) target.getWorld(),target.getDamageSources().playerAttack(player), 4.0f);
+            if (this.getWorld() instanceof ServerWorld serverWorld) {
+                target.damage(serverWorld, target.getDamageSources().playerAttack(player), damage);
+            }
 
             // 添加视觉效果
             spawnPullEffects();
@@ -165,7 +169,7 @@ public class TongueEntity extends ProjectileEntity {
         // 粒子效果
         for (int i = 0; i < 15; i++) {
             world.addParticleClient(
-                    ParticleTypes.SCULK_SOUL,
+                    ParticleTypes.SPIT,
                     pos.getX() + world.random.nextGaussian() * 0.5,
                     pos.getY() + world.random.nextDouble() * target.getHeight(),
                     pos.getZ() + world.random.nextGaussian() * 0.5,
