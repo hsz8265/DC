@@ -40,7 +40,7 @@ public class TongueEntity extends ProjectileEntity {
     public TongueEntity(World world, PlayerEntity owner,float speed) {
         super(MobEntities.TONGUE, world);
         this.setOwner(owner);
-        this.setPosition(owner.getX(), owner.getEyeY(), owner.getZ());
+        this.setPosition(owner.getX(), owner.getEyeY()-0.15F, owner.getZ());
 
         this.speed=speed;
         // 设置初始速度（玩家视线方向）
