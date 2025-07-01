@@ -46,7 +46,7 @@ public class ModItems {
             ConsumableComponents.food().consumeEffect(
                     new ApplyEffectsConsumeEffect(
                             List.of(
-                                    new StatusEffectInstance(Registries.STATUS_EFFECT.getEntry(Identifier.of(DarkCuisine.MOD_ID, "frog-e")).orElse(null),9600,0)
+                                    new StatusEffectInstance(DarkCuisine.fg,1600)
                                     )
 
                             )
@@ -57,7 +57,7 @@ public class ModItems {
                     ConsumableComponents.food().consumeEffect(
                             new ApplyEffectsConsumeEffect(
                                     List.of(
-                                            new StatusEffectInstance(Registries.STATUS_EFFECT.getEntry(Identifier.of(DarkCuisine.MOD_ID, "frog-e")).orElse(null),3200,1)
+                                            new StatusEffectInstance(DarkCuisine.fg,1600)
                                     )
 
                             )

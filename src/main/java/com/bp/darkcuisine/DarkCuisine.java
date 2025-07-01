@@ -22,12 +22,14 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.*;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
@@ -60,6 +62,8 @@ public class DarkCuisine implements ModInitializer {
 	//public static final KeyBinding GRAB_KEY = KeyBindingHelper.registerKeyBinding(
 			//new KeyBinding("key.dark-cuisine.grab", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_X, "category.dark-cuisine")
 	//);
+
+	public static final RegistryEntry<StatusEffect> fg = Registry.registerReference(Registries.STATUS_EFFECT,Identifier.of(DarkCuisine.MOD_ID,"frog-e"),new FrogEffect());
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
@@ -92,7 +96,7 @@ public class DarkCuisine implements ModInitializer {
 
 		Registry.register(Registries.SOUND_EVENT, Identifier.of(DarkCuisine.MOD_ID,"mos"), SoundEvent.of(Identifier.of(DarkCuisine.MOD_ID,"mos")));
 
-		Registry.registerReference(Registries.STATUS_EFFECT,Identifier.of(DarkCuisine.MOD_ID,"frog-e"),new FrogEffect());
+
 
 		LOGGER.info("Hello Fabric world!");
 
