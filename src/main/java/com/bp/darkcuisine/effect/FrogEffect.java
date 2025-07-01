@@ -27,7 +27,7 @@ import static net.minecraft.entity.projectile.ProjectileUtil.raycast;
 
 public class FrogEffect extends StatusEffect {
     public FrogEffect() {
-        super(StatusEffectCategory.BENEFICIAL,0xe9b8b3);
+        super(StatusEffectCategory.BENEFICIAL, 0xe9b8b3);
 
 
     }
@@ -38,24 +38,8 @@ public class FrogEffect extends StatusEffect {
     }
 
 
-    //@Override
-    /*public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
-        if(entity instanceof PlayerEntity && DarkCuisine.GRAB_KEY.wasPressed()){
-
-            Entity target = getTargetedEntity(player, 10.0);
-            for (Entity e : entities) {
-                if (e instanceof LivingEntity || e instanceof ItemEntity) {
-                    // 计算拉取方向（从实体指向玩家）
-                    Vec3d direction = entity.getPos().subtract(e.getPos()).normalize();
-                    // 施加速度（模拟拉取效果）
-                    e.setVelocity(direction.multiply(1.5)); // 调整数值控制拉取速度
-                }
-            }
-
-            //((PlayerEntity) entity).kill(world);
-            return super.applyUpdateEffect(world, entity, amplifier);
-        }else{
-            return false;
-        }
+    /*@Override
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
+        return false;
     }*/
 }
