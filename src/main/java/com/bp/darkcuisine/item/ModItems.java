@@ -42,7 +42,7 @@ public class ModItems {
                     )
             ).build()
     ));
-    public static final Item Frog_Juice1 = register("frog_juice1",Item::new,new Item.Settings().food(new FoodComponent.Builder().nutrition(3).saturationModifier(0.6f).build(),
+    public static final Item Frog_Juice1 = register("frog_juice1",Item::new,new Item.Settings().useRemainder(Items.GLASS_BOTTLE).food(new FoodComponent.Builder().nutrition(3).saturationModifier(0.6f).build(),
             ConsumableComponents.food().consumeEffect(
                     new ApplyEffectsConsumeEffect(
                             List.of(
@@ -53,7 +53,7 @@ public class ModItems {
                     ).build()
             )
     );
-    public static final Item Frog_Juice2 = register("frog_juice2",Item::new,new Item.Settings().food(new FoodComponent.Builder().nutrition(3).saturationModifier(0.6f).build(),
+    public static final Item Frog_Juice2 = register("frog_juice2",Item::new,new Item.Settings().useRemainder(Items.GLASS_BOTTLE).food(new FoodComponent.Builder().nutrition(3).saturationModifier(0.6f).build(),
                     ConsumableComponents.food().consumeEffect(
                             new ApplyEffectsConsumeEffect(
                                     List.of(
