@@ -46,10 +46,10 @@ public class TongueRenderer extends EntityRenderer<TongueEntity, TongueRenderSta
         matrices.multiply(this.dispatcher.getRotation());
         MatrixStack.Entry entry = matrices.peek();
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(LAYER);
-        produceVertex(vertexConsumer, entry, light, 0.0F, -50, 0, 1);
-        produceVertex(vertexConsumer, entry, light, 1.0F, -50, 1, 1);
-        produceVertex(vertexConsumer, entry, light, 1.0F, 50, 1, 0);
-        produceVertex(vertexConsumer, entry, light, 0.0F, 50, 0, 0);
+        produceVertex(vertexConsumer, entry, light, 0.0F, 0, 0, 1);
+        produceVertex(vertexConsumer, entry, light, 1.0F, 0, 1, 1);
+        produceVertex(vertexConsumer, entry, light, 1.0F, -100, 1, 0);
+        produceVertex(vertexConsumer, entry, light, 0.0F, -100, 0, 0);
         matrices.pop();
         //.render(state, matrices, vertexConsumers, light);
         super.render(state, matrices, vertexConsumers, light);
@@ -57,7 +57,7 @@ public class TongueRenderer extends EntityRenderer<TongueEntity, TongueRenderSta
 
 
     private static void produceVertex(VertexConsumer vertexConsumer, MatrixStack.Entry matrix, int light, float x, int z, int textureU, int textureV) {
-        vertexConsumer.vertex(matrix, x - 0.5F,0.0F,  0.25F-z)
+        vertexConsumer.vertex(matrix, -x + 0.5F,0.0F,  0.25F-z)
                 .color(Colors.WHITE)
                 .texture(textureU, textureV)
                 .overlay(OverlayTexture.DEFAULT_UV)
