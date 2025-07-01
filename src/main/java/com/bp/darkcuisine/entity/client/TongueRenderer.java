@@ -46,10 +46,10 @@ public class TongueRenderer extends EntityRenderer<TongueEntity, TongueRenderSta
         matrices.multiply(this.dispatcher.getRotation());
         MatrixStack.Entry entry = matrices.peek();
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(LAYER);
-        produceVertex(vertexConsumer, entry, light, 0.0F, 0, 0, 1);
-        produceVertex(vertexConsumer, entry, light, 1.0F, 0, 1, 1);
-        produceVertex(vertexConsumer, entry, light, 1.0F, 1, 1, 0);
-        produceVertex(vertexConsumer, entry, light, 0.0F, 1, 0, 0);
+        produceVertex(vertexConsumer, entry, light, 0.0F, -50, 0, 1);
+        produceVertex(vertexConsumer, entry, light, 1.0F, -50, 1, 1);
+        produceVertex(vertexConsumer, entry, light, 1.0F, 50, 1, 0);
+        produceVertex(vertexConsumer, entry, light, 0.0F, 50, 0, 0);
         matrices.pop();
         //.render(state, matrices, vertexConsumers, light);
         super.render(state, matrices, vertexConsumers, light);
