@@ -1,6 +1,7 @@
 // TongueEntity.java
 package com.bp.darkcuisine.entity.custom;
 
+import com.bp.darkcuisine.DarkCuisine;
 import com.bp.darkcuisine.entity.MobEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -16,6 +17,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.apache.commons.logging.Log;
@@ -88,30 +90,44 @@ public class TongueEntity extends ProjectileEntity {
             }
         }
 
+        //DarkCuisine.LOGGER.info("RayCast");
         // 碰撞检测
+        /*
         EntityHitResult hitResult = ProjectileUtil.getEntityCollision(
 
                 this.getWorld(),
                 this,
                 this.getPos(),
                 newPos,
-                this.getBoundingBox().stretch(velocity),
-                entity -> entity != this.getOwner() &&
-                        entity instanceof LivingEntity &&
-                        entity.isAlive()
+                this.getBoundingBox().stretch(velocity).expand(5),
+                (entity) -> {
+                    if(entity != this.getOwner() &&
+                            entity instanceof LivingEntity &&
+                            entity.isAlive()){;return true;}
+                    else {;return true;}
+                }
         );
 
         if (hitResult != null) {
-            onEntityHit(hitResult);
+            DarkCuisine.LOGGER.info(hitResult.getEntity().getName().toString());
+            super.onEntityHit(hitResult);
+        }else{
+            //DarkCuisine.LOGGER.info("NotHit");
         }
+
+         */
+
+
+        HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
+        this.hitOrDeflect(hitResult);
     }
 
     @Override
     protected void onEntityHit(EntityHitResult hitResult) {
-        super.onEntityHit(hitResult);
+        //super.onEntityHit(hitResult);
         Entity entity = hitResult.getEntity();
 
-        LOGGER.info("Hiiiiiiiiiiiiiiiiiiiiiiiiiiit");
+        DarkCuisine.LOGGER.info("Hiiiiiiiiiiiiiiiiiiiiiiiiiiit");
         if (entity instanceof LivingEntity livingEntity) {
             this.target = livingEntity;
             pullTarget();
@@ -128,7 +144,7 @@ public class TongueEntity extends ProjectileEntity {
 
             // 计算拉取力度
             double distance = player.distanceTo(target);
-            double strength = 100 * (1.0 - Math.min(distance / 10.0, 0.8));
+            double strength = 20 * (1.0 - Math.min(distance / 10.0, 0.8));
 
             // 应用速度
             target.setVelocity(pullDirection.multiply(strength));
