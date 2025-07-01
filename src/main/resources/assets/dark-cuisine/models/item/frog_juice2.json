@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
 
   "textures": {
-    "layer0": "dark-cuisine:item/frog_juice"
+    "layer0": "dark-cuisine:item/frog_juice2"
   }
 }
