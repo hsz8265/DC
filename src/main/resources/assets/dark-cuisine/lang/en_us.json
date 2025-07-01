@@ -10,5 +10,8 @@
   "entity.dark-cuisine.tongue": "Frog Tongue",
   "subtitles.entity.frog.tongue": "Frog tongue snaps",
   "key.dark-cuisine.grab": "Frog Tongue",
-  "category.dark-cuisine": "Dark Cuisine"
+  "category.dark-cuisine": "Dark Cuisine",
+  "item.dark-cuisine.frog_juice1": "Frog Juice",
+  "item.dark-cuisine.frog_juice2": "Frog Juice",
+  "item.dark-cuisine.frog_foot": "Frog Foot"
 }

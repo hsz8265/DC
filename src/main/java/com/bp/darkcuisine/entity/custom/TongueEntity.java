@@ -5,12 +5,14 @@ import com.bp.darkcuisine.DarkCuisine;
 import com.bp.darkcuisine.entity.MobEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -26,7 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import static com.bp.darkcuisine.DarkCuisine.MOD_ID;
 public class TongueEntity extends ProjectileEntity {
-    private static final int MAX_LIFETIME = 8; // 0.4秒最大存在时间
+    private static final int MAX_LIFETIME = 20; // 0.4秒最大存在时间
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     private int ticksInAir = 0;
     private LivingEntity target;
@@ -37,12 +39,13 @@ public class TongueEntity extends ProjectileEntity {
         super(entityType, world);
     }
 
-    public TongueEntity(World world, PlayerEntity owner,float speed) {
+    public TongueEntity(World world, PlayerEntity owner,float speed,float damage) {
         super(MobEntities.TONGUE, world);
         this.setOwner(owner);
         this.setPosition(owner.getX(), owner.getEyeY()-0.15F, owner.getZ());
 
         this.speed=speed;
+        this.damage=damage;
         // 设置初始速度（玩家视线方向）
         Vec3d rotationVec = owner.getRotationVec(1.0F);
         this.setVelocity(rotationVec.x * speed, rotationVec.y * speed, rotationVec.z * speed);
@@ -154,7 +157,13 @@ public class TongueEntity extends ProjectileEntity {
 
             // 造成伤害
             if (this.getWorld() instanceof ServerWorld serverWorld) {
-                target.damage(serverWorld, target.getDamageSources().playerAttack(player), damage);
+                target.damage(serverWorld, target.getDamageSources().playerAttack(player), 2F+damage);
+                if(target.isDead())
+                {
+                    target.getWorld().spawnEntity(new ItemEntity(target.getWorld(),target.getX(),target.getY(),target.getZ(),Items.PEARLESCENT_FROGLIGHT.getDefaultStack()));
+                    target.getWorld().spawnEntity(new ItemEntity(target.getWorld(),target.getX(),target.getY(),target.getZ(),Items.VERDANT_FROGLIGHT.getDefaultStack()));
+                    target.getWorld().spawnEntity(new ItemEntity(target.getWorld(),target.getX(),target.getY(),target.getZ(),Items.OCHRE_FROGLIGHT.getDefaultStack()));
+                }
             }
 
             // 添加视觉效果

@@ -48,8 +48,8 @@ public class TongueRenderer extends EntityRenderer<TongueEntity, TongueRenderSta
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(LAYER);
         produceVertex(vertexConsumer, entry, light, 0.0F, 0, 0, 1);
         produceVertex(vertexConsumer, entry, light, 1.0F, 0, 1, 1);
-        produceVertex(vertexConsumer, entry, light, 1.0F, -100, 1, 0);
-        produceVertex(vertexConsumer, entry, light, 0.0F, -100, 0, 0);
+        produceVertex(vertexConsumer, entry, light, 1.0F, -256, 1, 0);
+        produceVertex(vertexConsumer, entry, light, 0.0F, -256, 0, 0);
         matrices.pop();
         //.render(state, matrices, vertexConsumers, light);
         super.render(state, matrices, vertexConsumers, light);

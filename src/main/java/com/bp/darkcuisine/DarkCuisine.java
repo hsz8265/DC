@@ -74,7 +74,7 @@ public class DarkCuisine implements ModInitializer {
 		GRAB_KEY = new KeyBinding(
 				"key." + MOD_ID + ".grab",
 				InputUtil.Type.KEYSYM,
-				GLFW.GLFW_KEY_X,
+				GLFW.GLFW_KEY_R,
 				"category." + MOD_ID
 		);
 		KeyBindingHelper.registerKeyBinding(GRAB_KEY);

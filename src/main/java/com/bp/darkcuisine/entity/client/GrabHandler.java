@@ -1,21 +1,28 @@
 package com.bp.darkcuisine.entity.client;
 
 import com.bp.darkcuisine.DarkCuisine;
+import com.bp.darkcuisine.effect.FrogEffect;
 import com.bp.darkcuisine.entity.custom.TongueEntity;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+
+import java.util.Objects;
 
 public class GrabHandler {
     private static final double DEFAULT_RANGE = 10.0;
@@ -23,6 +30,7 @@ public class GrabHandler {
     private static final float PULL_STRENGTH = 1.5f;
     private static final int COOLDOWN_TICKS = 20; // 1秒冷却
 
+    private static int level=0;
     public static void registerServerPacket() {
         // 注册服务端处理器
 
@@ -33,9 +41,17 @@ public class GrabHandler {
                     player.getServer().execute(() -> {
                         DarkCuisine.LOGGER.info("Get");
                         // 1. 检查冷却时间
-                        //if (player.getItemCooldownManager().isCoolingDown(Items.DIAMOND)) {
-                            //return; // 冷却中，不执行
-                        //}
+                        if(!player.hasStatusEffect(Registries.STATUS_EFFECT.getEntry(Identifier.of(DarkCuisine.MOD_ID,"frog-e")).orElse(null)))
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            level= Objects.requireNonNull(player.getStatusEffect(Registries.STATUS_EFFECT.getEntry(Identifier.of(DarkCuisine.MOD_ID, "frog-e")).orElse(null))).getAmplifier();
+                        }
+                        if (player.getItemCooldownManager().isCoolingDown(Items.AIR.getDefaultStack())) {
+                            return; // 冷却中，不执行
+                        }
 
 
                         //Entity target  = getTargetedEntity(player,20);
@@ -47,11 +63,12 @@ public class GrabHandler {
                         TongueEntity tongue = new TongueEntity(
                                 player.getWorld(),
                                 player,
-                                1f
+                                1f+0.05F*level,
+                                level
                         );
                         player.getWorld().spawnEntity(tongue);
                             // 7. 设置冷却时间
-                            //player.getItemCooldownManager().set(Items.DIAMOND, COOLDOWN_TICKS);
+                            player.getItemCooldownManager().set(Items.AIR.getDefaultStack(), COOLDOWN_TICKS/(1+level));
 
                             // 8. 消耗饥饿值（可选）
                             if (!player.isCreative()) {
@@ -62,7 +79,7 @@ public class GrabHandler {
                                         SoundCategory.PLAYERS,
                                         0.7f,
                                         1.2f + player.getRandom().nextFloat() * 0.2f);
-                                player.addExhaustion(2.0f);
+                                player.addExhaustion(4.0f);
                                 // 消耗2点饥饿值
                             }
                         });

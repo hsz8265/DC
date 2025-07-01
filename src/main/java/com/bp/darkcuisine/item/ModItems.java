@@ -1,14 +1,18 @@
 package com.bp.darkcuisine.item;
 import com.bp.darkcuisine.DarkCuisine;
+import com.bp.darkcuisine.effect.FrogEffect;
 import com.bp.darkcuisine.entity.MobEntities;
 import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponent;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -38,7 +42,31 @@ public class ModItems {
                     )
             ).build()
     ));
+    public static final Item Frog_Juice1 = register("frog_juice1",Item::new,new Item.Settings().food(new FoodComponent.Builder().nutrition(3).saturationModifier(0.6f).build(),
+            ConsumableComponents.food().consumeEffect(
+                    new ApplyEffectsConsumeEffect(
+                            List.of(
+                                    new StatusEffectInstance(Registries.STATUS_EFFECT.getEntry(Identifier.of(DarkCuisine.MOD_ID, "frog-e")).orElse(null),9600,0)
+                                    )
+
+                            )
+                    ).build()
+            )
+    );
+    public static final Item Frog_Juice2 = register("frog_juice2",Item::new,new Item.Settings().food(new FoodComponent.Builder().nutrition(3).saturationModifier(0.6f).build(),
+                    ConsumableComponents.food().consumeEffect(
+                            new ApplyEffectsConsumeEffect(
+                                    List.of(
+                                            new StatusEffectInstance(Registries.STATUS_EFFECT.getEntry(Identifier.of(DarkCuisine.MOD_ID, "frog-e")).orElse(null),3200,1)
+                                    )
+
+                            )
+                    ).build()
+            )
+    );
+
     public static final Item Mosquito_Corpse = register("mosquito_corpse",Item::new,new Item.Settings());
+    public static final Item Frog_Foot = register("frog_foot",Item::new,new Item.Settings());
     public static final Item Mosquito_Spawn_Egg = register("mosquito_spawn_egg",settings->new SpawnEggItem(MobEntities.mosquito,settings),new Item.Settings());
     //public static final Item Mosquito_Spawn_Egg1 = register("mosquito_spawn_egg", new SpawnEggItem(EntityTesting.tststtttttt,new Item.Settings()),new Item.Settings());
     /*

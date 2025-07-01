@@ -20,6 +20,9 @@ public class DarkCuisineItemGroup {
                 entries.add(ModItems.Mosquito_Cake);
                 entries.add(ModItems.Mosquito_Corpse);
                 entries.add(ModItems.Mosquito_Spawn_Egg);
+                entries.add(ModItems.Frog_Juice1);
+                entries.add(ModItems.Frog_Juice2);
+                entries.add(ModItems.Frog_Foot);
             }).build();
     public static void initialize()
     {
