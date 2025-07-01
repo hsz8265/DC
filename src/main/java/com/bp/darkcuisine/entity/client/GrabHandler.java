@@ -79,7 +79,7 @@ public class GrabHandler {
                                         SoundCategory.PLAYERS,
                                         0.7f,
                                         1.2f + player.getRandom().nextFloat() * 0.2f);
-                                player.addExhaustion(4.0f);
+                                player.addExhaustion(2.0F/level+1);
                                 // 消耗2点饥饿值
                             }
                         });

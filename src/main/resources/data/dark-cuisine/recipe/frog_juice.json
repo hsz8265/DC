@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "dark-cuisine:frog_foot",
+    "I": "dark-cuisine:frog_juice1"
+  },
+  "pattern": [
+    "###",
+    "#I#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "dark-cuisine:frog_juice2"
+  }
+}
