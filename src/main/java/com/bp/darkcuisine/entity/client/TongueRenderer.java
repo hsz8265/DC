@@ -57,7 +57,7 @@ public class TongueRenderer extends EntityRenderer<TongueEntity, TongueRenderSta
 
 
     private static void produceVertex(VertexConsumer vertexConsumer, MatrixStack.Entry matrix, int light, float x, int z, int textureU, int textureV) {
-        vertexConsumer.vertex(matrix, x - 0.5F,0.0F, z - 0.25F)
+        vertexConsumer.vertex(matrix, x - 0.5F,0.0F,  0.25F-z)
                 .color(Colors.WHITE)
                 .texture(textureU, textureV)
                 .overlay(OverlayTexture.DEFAULT_UV)
