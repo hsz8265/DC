@@ -65,6 +65,11 @@ public class TongueEntity extends ProjectileEntity {
 
     @Override
     public void tick() {
+        HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
+        this.hitOrDeflect(hitResult);
+        Vec3d velocity = this.getVelocity();
+        Vec3d newPos = this.getPos().add(velocity);
+        this.setPosition(newPos.x, newPos.y, newPos.z);
         super.tick();
         ticksInAir++;
 
@@ -75,9 +80,6 @@ public class TongueEntity extends ProjectileEntity {
         }
 
         // 更新位置
-        Vec3d velocity = this.getVelocity();
-        Vec3d newPos = this.getPos().add(velocity);
-        this.setPosition(newPos.x, newPos.y, newPos.z);
 
         // 粒子效果
         if (this.getWorld().isClient) {
@@ -122,8 +124,6 @@ public class TongueEntity extends ProjectileEntity {
          */
 
 
-        HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
-        this.hitOrDeflect(hitResult);
     }
 
     @Override

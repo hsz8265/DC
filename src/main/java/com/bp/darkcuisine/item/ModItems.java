@@ -46,7 +46,7 @@ public class ModItems {
             ConsumableComponents.food().consumeEffect(
                     new ApplyEffectsConsumeEffect(
                             List.of(
-                                    new StatusEffectInstance(DarkCuisine.fg,1600)
+                                    new StatusEffectInstance(DarkCuisine.fg,9600,0)
                                     )
 
                             )
@@ -57,7 +57,7 @@ public class ModItems {
                     ConsumableComponents.food().consumeEffect(
                             new ApplyEffectsConsumeEffect(
                                     List.of(
-                                            new StatusEffectInstance(DarkCuisine.fg,1600)
+                                            new StatusEffectInstance(DarkCuisine.fg,9600,1)
                                     )
 
                             )
