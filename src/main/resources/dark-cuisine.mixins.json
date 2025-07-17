@@ -13,6 +13,6 @@
     "requireAnnotations": true
   },
   "client": [
-    "PlayerEntityModelMixin"
-	]
+    "PlayerEntityRenderMixin"
+  ]
 }

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.logging.Logger;
 
 @Mixin(HungerManager.class)
-public abstract class HungerManagerMixin
+public class HungerManagerMixin
 {
     @Shadow private int foodLevel;
 
