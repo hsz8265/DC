@@ -2,7 +2,6 @@ package com.bp.darkcuisine.mixin;
 
 
 import com.bp.darkcuisine.DarkCuisine;
-import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,4 +23,3 @@ public class PlayerEntityMixin {
         }
     }
 }
-

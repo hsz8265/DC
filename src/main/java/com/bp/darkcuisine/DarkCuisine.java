@@ -42,15 +42,16 @@ import net.minecraft.world.World;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.spongepowered.asm.mixin.Mixin;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static com.bp.darkcuisine.effect.FrogEffect.*;
 import static com.bp.darkcuisine.entity.MobEntities.mosquito;
 import static net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.registerGlobalReceiver;
 import static net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.START_SLEEPING;
 
+// 2. 模型渲染修改 (Mixin)
 public class DarkCuisine implements ModInitializer {
 	public static final String MOD_ID = "dark-cuisine";
 
@@ -75,6 +76,7 @@ public class DarkCuisine implements ModInitializer {
 				GrabPayload.ID,
 				GrabPayload.CODEC
 		);
+
 
 		// 注册按键绑定
 		GRAB_KEY = new KeyBinding(
