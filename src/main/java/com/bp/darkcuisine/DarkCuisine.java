@@ -2,6 +2,7 @@ package com.bp.darkcuisine;
 
 import com.bp.darkcuisine.ItemGroup.DarkCuisineItemGroup;
 import com.bp.darkcuisine.effect.FrogEffect;
+import com.bp.darkcuisine.effect.WeiEffect;
 import com.bp.darkcuisine.entity.MobEntities;
 import com.bp.darkcuisine.entity.client.GrabHandler;
 import com.bp.darkcuisine.entity.client.GrabPayload;
@@ -64,6 +65,7 @@ public class DarkCuisine implements ModInitializer {
 	//);
 
 	public static final RegistryEntry<StatusEffect> fg = Registry.registerReference(Registries.STATUS_EFFECT,Identifier.of(DarkCuisine.MOD_ID,"frog-e"),new FrogEffect());
+	public static final RegistryEntry<StatusEffect> wei = Registry.registerReference(Registries.STATUS_EFFECT,Identifier.of(DarkCuisine.MOD_ID,"wei"),new WeiEffect());
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
