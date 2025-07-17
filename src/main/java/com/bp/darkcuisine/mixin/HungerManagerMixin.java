@@ -1,6 +1,8 @@
 package com.bp.darkcuisine.mixin;
 
 import com.bp.darkcuisine.DarkCuisine;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,7 +29,9 @@ public class HungerManagerMixin
         {
             extrafoodlevel+=nutrition;
             DarkCuisine.LOGGER.info("{}",this.extrafoodlevel);
+
         }
+
     }
     @Inject(at = @At("HEAD"),
             method = "update")
@@ -37,6 +41,12 @@ public class HungerManagerMixin
         {
             foodLevel+=1;
             extrafoodlevel-=1;
+        }
+        if(extrafoodlevel>30){
+            player.addStatusEffect(new StatusEffectInstance(DarkCuisine.wei));
+        }
+        if(extrafoodlevel>60){
+            player.kill(player.getWorld());
         }
     }
 
