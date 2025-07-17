@@ -43,7 +43,7 @@ public class HungerManagerMixin
             extrafoodlevel-=1;
         }
         if(extrafoodlevel>30){
-            player.addStatusEffect(new StatusEffectInstance(DarkCuisine.wei));
+            player.addStatusEffect(new StatusEffectInstance(DarkCuisine.wei,1600));
         }
         if(extrafoodlevel>60){
             player.kill(player.getWorld());
